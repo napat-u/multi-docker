@@ -3,21 +3,21 @@ services:
   - docker
 
 before_install:
-  - docker build -t napat-u/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t napatud/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true napat-u/react-test npm test
+  - docker run -e CI=true napatud/react-test npm test
 
 after_success:
-  - docker build -t napat-u/multi-client ./client
-  - docker build -t napat-u/multi-nginx ./nginx
-  - docker build -t napat-u/multi-server ./server
-  - docker build -t napat-u/multi-worker ./worker
+  - docker build -t napatud/multi-client ./client
+  - docker build -t napatud/multi-nginx ./nginx
+  - docker build -t napatud/multi-server ./server
+  - docker build -t napatud/multi-worker ./worker
 
   #Log in to the docker CLI using docker login
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   #Take those images and push them to docker hub
-  - docker push napat-u/multi-client
-  - docker push napat-u/multi-nginx
-  - docker push napat-u/multi-server
-  - docker push napat-u/multi-worker
+  - docker push napatud/multi-client
+  - docker push napatud/multi-nginx
+  - docker push napatud/multi-server
+  - docker push napatud/multi-worker
