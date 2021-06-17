@@ -21,3 +21,15 @@ after_success:
   - docker push napatud/multi-nginx
   - docker push napatud/multi-server
   - docker push napatud/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: ap-southeast-1
+  app: multi-docker
+  env: Multicontainer-env
+  bucket_name: elasticbeanstalk-ap-southeast-1-149592319634
+  bucket_path: docker-multi
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
